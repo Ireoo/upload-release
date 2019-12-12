@@ -4812,7 +4812,9 @@ module.exports = /******/ (function(modules, runtime) {
           // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
           const uploadUrl = core.getInput("upload_url", { required: true });
           const dir = core.getInput("dir", { required: true });
-          const exts = JSON.parse(core.getInput("exts", { required: true }));
+          const exts = JSON.parse(
+            core.getInput("exts", { required: true }).toLocaleLowerCase()
+          );
           // const assetContentType = core.getInput("asset_content_type", {
           //   required: true
           // });
@@ -4823,7 +4825,9 @@ module.exports = /******/ (function(modules, runtime) {
           const files = fs.readdirSync(dir).filter(d => {
             console.log(path.join(dir, d), extName(path.join(dir, d))[0]);
             try {
-              let e = exts.indexOf(extName(path.join(dir, d))[0].ext);
+              let e = exts.indexOf(
+                extName(path.join(dir, d))[0].ext.toLocaleLowerCase()
+              );
               return e > -1;
             } catch (e) {
               return false;
