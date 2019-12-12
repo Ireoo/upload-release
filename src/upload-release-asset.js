@@ -46,8 +46,8 @@ async function run() {
     //   required: true
     // });
 
-    const dir = ".";
-    const exts = ["exe", "js", "md", "yml"];
+    // const dir = ".";
+    // const exts = ["exe", "js", "md", "yml"];
 
     const files = fs.readdirSync(dir).filter(d => {
       console.log(path.join(dir, d), extName(path.join(dir, d))[0]);
