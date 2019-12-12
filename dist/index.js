@@ -4775,6 +4775,9 @@ module.exports = /******/ (function(modules, runtime) {
       const path = __webpack_require__(622);
       const extName = __webpack_require__(547);
 
+      // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
+      const github = new GitHub(process.env.GITHUB_TOKEN);
+
       const upload = async (
         uploadUrl,
         assetPath,
@@ -4811,9 +4814,6 @@ module.exports = /******/ (function(modules, runtime) {
 
       async function run() {
         try {
-          // Get authenticated GitHub client (Ocktokit): https://github.com/actions/toolkit/tree/master/packages/github#usage
-          const github = new GitHub(process.env.GITHUB_TOKEN);
-
           // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
           const uploadUrl = core.getInput("upload_url", { required: true });
           const dir = core.getInput("dir", { required: true });
