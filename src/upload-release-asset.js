@@ -68,7 +68,11 @@ async function run() {
         path.join(dir, files[k]),
         extName(path.join(dir, files[k]))[0].mime
       );
-      upload(uploadUrl, files[k], extName(path.join(dir, files[k]))[0].mime);
+      upload(
+        uploadUrl,
+        path.join(dir, files[k]),
+        extName(path.join(dir, files[k]))[0].mime
+      );
     }
     // upload(uploadUrl, )
   } catch (error) {

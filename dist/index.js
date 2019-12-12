@@ -4841,7 +4841,7 @@ module.exports = /******/ (function(modules, runtime) {
             );
             upload(
               uploadUrl,
-              files[k],
+              path.join(dir, files[k]),
               extName(path.join(dir, files[k]))[0].mime
             );
           }
