@@ -4822,13 +4822,6 @@ module.exports = /******/ (function(modules, runtime) {
           );
           const suffix = core.getInput("suffix") || "";
 
-          // const assetContentType = core.getInput("asset_content_type", {
-          //   required: true
-          // });
-
-          // const dir = ".";
-          // const exts = ["exe", "js", "md", "yml"];
-
           const files = fs.readdirSync(dir).filter(d => {
             console.log(path.join(dir, d), extName(path.join(dir, d))[0]);
             try {
@@ -4840,7 +4833,7 @@ module.exports = /******/ (function(modules, runtime) {
               return false;
             }
           });
-          // console.log(files);
+
           for (let k in files) {
             let file_array = files[k].split(".");
             let ext = file_array.pop();
@@ -4858,15 +4851,12 @@ module.exports = /******/ (function(modules, runtime) {
               `${name}${suffix}${ext}`
             );
           }
-          // upload(uploadUrl, )
         } catch (error) {
           core.setFailed(error.message);
         }
       }
 
       module.exports = run;
-
-      // run();
 
       /***/
     },
