@@ -4775,7 +4775,12 @@ module.exports = /******/ (function(modules, runtime) {
       const path = __webpack_require__(622);
       const extName = __webpack_require__(547);
 
-      const upload = async (uploadUrl, assetPath, assetContentType) => {
+      const upload = async (
+        uploadUrl,
+        assetPath,
+        assetContentType,
+        assetName
+      ) => {
         // Determine content-length for header to upload asset
         const contentLength = filePath => fs.statSync(filePath).size;
 
@@ -4815,6 +4820,8 @@ module.exports = /******/ (function(modules, runtime) {
           const exts = JSON.parse(
             core.getInput("exts", { required: true }).toLocaleLowerCase()
           );
+          const suffix = core.getInput("suffix") || "";
+
           // const assetContentType = core.getInput("asset_content_type", {
           //   required: true
           // });
@@ -4835,14 +4842,20 @@ module.exports = /******/ (function(modules, runtime) {
           });
           // console.log(files);
           for (let k in files) {
+            let file_array = files[k].split(".");
+            let ext = file_array.pop();
+            let name = file_array.join(".");
             console.log(
               path.join(dir, files[k]),
-              extName(path.join(dir, files[k]))[0].mime
+              extName(path.join(dir, files[k]))[0].mime,
+              JSON.stringify(file_array),
+              `${name}${suffix}${ext}`
             );
             upload(
               uploadUrl,
               path.join(dir, files[k]),
-              extName(path.join(dir, files[k]))[0].mime
+              extName(path.join(dir, files[k]))[0].mime,
+              `${name}${suffix}${ext}`
             );
           }
           // upload(uploadUrl, )
