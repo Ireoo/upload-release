@@ -4842,13 +4842,13 @@ module.exports = /******/ (function(modules, runtime) {
               path.join(dir, files[k]),
               extName(path.join(dir, files[k]))[0].mime,
               JSON.stringify(file_array),
-              `${name}${suffix}${ext}`
+              `${name}${suffix}.${ext}`
             );
             upload(
               uploadUrl,
               path.join(dir, files[k]),
               extName(path.join(dir, files[k]))[0].mime,
-              `${name}${suffix}${ext}`
+              `${name}${suffix}.${ext}`
             );
           }
         } catch (error) {
