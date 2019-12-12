@@ -7,8 +7,12 @@
   "scripts": {
     "lint": "eslint 'src/**.js' 'tests/**.js' --fix",
     "test": "eslint 'src/**.js' 'tests/**.js' && jest --coverage",
-    "build": "ncc build src/main.js",
-    "precommit": "npm run build && git add dist/"
+    "build": "ncc build src/main.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run build && git add dist/ && pretty-quick --staged"
+    }
   },
   "repository": {
     "type": "git",
@@ -37,7 +41,8 @@
     "eslint-plugin-react": "^7.12.4",
     "husky": "^3.0.5",
     "jest": "^24.8.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
   },
   "jest": {
     "testEnvironment": "node",
