@@ -49,9 +49,12 @@ async function run() {
     const files = fs.readdirSync(dir).filter(d => {
       console.log(path.join(dir, d), extName(path.join(dir, d))[0]);
       try {
-        let e = exts.indexOf(
-          extName(path.join(dir, d))[0].ext.toLocaleLowerCase()
-        );
+        let file_array = d.split(".");
+        let ext = file_array.pop();
+        let e = exts.indexOf(ext.toLocaleLowerCase());
+        // let e = exts.indexOf(
+        //   extName(path.join(dir, d))[0].ext.toLocaleLowerCase()
+        // );
         return e > -1;
       } catch (e) {
         return false;
